@@ -1,0 +1,133 @@
+
+
+================================================================
+== Synthesis Summary Report of 'dft'
+================================================================
++ General Information: 
+    * Date:           Fri Nov  7 11:36:18 2025
+    * Version:        2025.1 (Build 6135595 on May 21 2025)
+    * Project:        dft.comp
+    * Solution:       hls (Vivado IP Flow Target)
+    * Product family: zynq
+    * Target device:  xc7z020-clg400-1
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +------------------------------------+------+------+---------+-----------+----------+---------+---------+----------+--------+--------+-----------+-----------+-----+
+    |               Modules              | Issue|      |       Latency       | Iteration|         |   Trip  |          |        |        |           |           |     |
+    |               & Loops              | Type | Slack| (cycles)|    (ns)   |  Latency | Interval|  Count  | Pipelined|  BRAM  |   DSP  |     FF    |    LUT    | URAM|
+    +------------------------------------+------+------+---------+-----------+----------+---------+---------+----------+--------+--------+-----------+-----------+-----+
+    |+ dft                               |     -|  0.04|  6291472|  6.291e+07|         -|  6291456|        -|    rewind|  4 (1%)|  5 (2%)|  1231 (1%)|  1422 (2%)|    -|
+    | o VITIS_LOOP_15_1_VITIS_LOOP_20_2  |    II|  7.30|  6291470|  6.291e+07|        21|        6|  1048576|       yes|       -|       -|          -|          -|    -|
+    +------------------------------------+------+------+---------+-----------+----------+---------+---------+----------+--------+--------+-----------+-----------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* AP_MEMORY
++----------------------+-----------+----------+
+| Port                 | Direction | Bitwidth |
++----------------------+-----------+----------+
+| imag_op_address0     | out       | 10       |
+| imag_op_d0           | out       | 32       |
+| imag_sample_address0 | out       | 10       |
+| imag_sample_q0       | in        | 32       |
+| real_op_address0     | out       | 10       |
+| real_op_d0           | out       | 32       |
+| real_sample_address0 | out       | 10       |
+| real_sample_q0       | in        | 32       |
++----------------------+-----------+----------+
+
+* TOP LEVEL CONTROL
++-----------+------------+-----------------------------------+
+| Interface | Type       | Ports                             |
++-----------+------------+-----------------------------------+
+| ap_clk    | clock      | ap_clk                            |
+| ap_rst    | reset      | ap_rst                            |
+| ap_ctrl   | ap_ctrl_hs | ap_done ap_idle ap_ready ap_start |
++-----------+------------+-----------------------------------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++-------------+-----------+----------+
+| Argument    | Direction | Datatype |
++-------------+-----------+----------+
+| real_sample | in        | float*   |
+| imag_sample | in        | float*   |
+| real_op     | out       | float*   |
+| imag_op     | out       | float*   |
++-------------+-----------+----------+
+
+* SW-to-HW Mapping
++-------------+----------------------+---------+----------+
+| Argument    | HW Interface         | HW Type | HW Usage |
++-------------+----------------------+---------+----------+
+| real_sample | real_sample_address0 | port    | offset   |
+| real_sample | real_sample_ce0      | port    |          |
+| real_sample | real_sample_q0       | port    |          |
+| imag_sample | imag_sample_address0 | port    | offset   |
+| imag_sample | imag_sample_ce0      | port    |          |
+| imag_sample | imag_sample_q0       | port    |          |
+| real_op     | real_op_address0     | port    | offset   |
+| real_op     | real_op_ce0          | port    |          |
+| real_op     | real_op_we0          | port    |          |
+| real_op     | real_op_d0           | port    |          |
+| imag_op     | imag_op_address0     | port    | offset   |
+| imag_op     | imag_op_ce0          | port    |          |
+| imag_op     | imag_op_we0          | port    |          |
+| imag_op     | imag_op_d0           | port    |          |
++-------------+----------------------+---------+----------+
+
+
+================================================================
+== Bind Op Report
+================================================================
++-----------------------------------------+-----+--------+---------------+--------+----------+---------+
+| Name                                    | DSP | Pragma | Variable      | Op     | Impl     | Latency |
++-----------------------------------------+-----+--------+---------------+--------+----------+---------+
+| + dft                                   | 5   |        |               |        |          |         |
+|   select_ln15_fu_227_p3                 |     |        | select_ln15   | select | auto_sel | 0       |
+|   select_ln15_1_fu_340_p3               |     |        | select_ln15_1 | select | auto_sel | 0       |
+|   select_ln15_2_fu_329_p3               |     |        | select_ln15_2 | select | auto_sel | 0       |
+|   k_fu_235_p3                           |     |        | k             | select | auto_sel | 0       |
+|   mul_10s_10s_10_1_1_U3                 |     |        | idx           | mul    | auto     | 0       |
+|   fmul_32ns_32ns_32_4_max_dsp_1_U2      | 3   |        | mul           | fmul   | maxdsp   | 3       |
+|   fmul_32ns_32ns_32_4_max_dsp_1_U2      | 3   |        | mul1          | fmul   | maxdsp   | 3       |
+|   faddfsub_32ns_32ns_32_5_full_dsp_1_U1 | 2   |        | sub           | fsub   | fulldsp  | 4       |
+|   faddfsub_32ns_32ns_32_5_full_dsp_1_U1 | 2   |        | sum_real      | fsub   | fulldsp  | 4       |
+|   fmul_32ns_32ns_32_4_max_dsp_1_U2      | 3   |        | mul2          | fmul   | maxdsp   | 3       |
+|   fmul_32ns_32ns_32_4_max_dsp_1_U2      | 3   |        | mul3          | fmul   | maxdsp   | 3       |
+|   faddfsub_32ns_32ns_32_5_full_dsp_1_U1 | 2   |        | add1          | fsub   | fulldsp  | 4       |
+|   faddfsub_32ns_32ns_32_5_full_dsp_1_U1 | 2   |        | sum_imag      | fsub   | fulldsp  | 4       |
+|   n_fu_279_p2                           |     |        | n             | add    | fabric   | 0       |
+|   icmp_ln20_fu_284_p2                   |     |        | icmp_ln20     | seteq  | auto     | 0       |
+|   add_ln15_1_fu_290_p2                  |     |        | add_ln15_1    | add    | fabric   | 0       |
+|   add_ln15_fu_296_p2                    |     |        | add_ln15      | add    | fabric   | 0       |
+|   icmp_ln15_fu_301_p2                   |     |        | icmp_ln15     | seteq  | auto     | 0       |
++-----------------------------------------+-----+--------+---------------+--------+----------+---------+
+
+
+================================================================
+== Storage Report
+================================================================
++----------------------------+--------+------+------+------+--------+------------------------+------+---------+------------------+
+| Name                       | Usage  | Type | BRAM | URAM | Pragma | Variable               | Impl | Latency | Bitwidth, Depth, |
+|                            |        |      |      |      |        |                        |      |         | Banks            |
++----------------------------+--------+------+------+------+--------+------------------------+------+---------+------------------+
+| + dft                      |        |      | 4    | 0    |        |                        |      |         |                  |
+|   cos_coefficients_table_U | rom_1p |      | 2    |      |        | cos_coefficients_table | auto | 1       | 32, 1024, 1      |
+|   sin_coefficients_table_U | rom_1p |      | 2    |      |        | sin_coefficients_table | auto | 1       | 32, 1024, 1      |
++----------------------------+--------+------+------+------+--------+------------------------+------+---------+------------------+
+
+
+================================================================
+== Pragma Report
+================================================================
+  No pragmas found
+
