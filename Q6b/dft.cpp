@@ -1,10 +1,9 @@
 // DFT1024 using 1D lookup tables (fits PYNQ-Z2 BRAM)
 // logic refering to textbook Figure 4.15, using mod to ensure size of the table
 // module is working because sin and cos are periodic
-// We define: c = cos(angle); s = -sin(angle). Then
-//   real += xr*c - xi*s  => xr*cos(angle) + xi*sin(angle)
-//   imag += xr*s + xi*c  => -xr*sin(angle) + xi*cos(angle)
-//
+// We define: c = cos(angle); s = sin(-angle) == -sin(angle).
+//   real_op[k] += xr*c - xi*s  -> xr*cos(angle) + xi*sin(angle)
+//   imag_op[k] += xr*s + xi*c  -> -xr*sin(angle) + xi*cos(angle)
 
 #include "dft.h"
 #include "coefficients1024.h"

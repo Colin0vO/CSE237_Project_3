@@ -1,0 +1,149 @@
+
+
+================================================================
+== Synthesis Summary Report of 'dft'
+================================================================
++ General Information: 
+    * Date:           Fri Nov  7 12:39:21 2025
+    * Version:        2025.1 (Build 6135595 on May 21 2025)
+    * Project:        dft.comp
+    * Solution:       hls (Vivado IP Flow Target)
+    * Product family: zynq
+    * Target device:  xc7z020-clg400-1
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +-------------------------------------------------+------+------+---------+-----------+----------+---------+---------+----------+--------+---------+-----------+-----------+-----+
+    |                     Modules                     | Issue|      |       Latency       | Iteration|         |   Trip  |          |        |         |           |           |     |
+    |                     & Loops                     | Type | Slack| (cycles)|    (ns)   |  Latency | Interval|  Count  | Pipelined|  BRAM  |   DSP   |     FF    |    LUT    | URAM|
+    +-------------------------------------------------+------+------+---------+-----------+----------+---------+---------+----------+--------+---------+-----------+-----------+-----+
+    |+ dft                                            |     -|  0.04|  1049624|  1.050e+07|         -|  1049625|        -|        no|  4 (1%)|  20 (9%)|  2183 (2%)|  3380 (6%)|    -|
+    | + dft_Pipeline_VITIS_LOOP_17_1                  |     -|  0.82|     1026|  1.026e+04|         -|     1025|        -|    rewind|       -|        -|   13 (~0%)|   51 (~0%)|    -|
+    |  o VITIS_LOOP_17_1                              |     -|  7.30|     1024|  1.024e+04|         1|        1|     1024|       yes|       -|        -|          -|          -|    -|
+    | + dft_Pipeline_VITIS_LOOP_23_2_VITIS_LOOP_28_3  |     -|  0.04|  1048595|  1.049e+07|         -|  1048577|        -|    rewind|  4 (1%)|  20 (9%)|  2164 (2%)|  3174 (5%)|    -|
+    |  o VITIS_LOOP_23_2_VITIS_LOOP_28_3              |     -|  7.30|  1048593|  1.049e+07|        19|        1|  1048576|       yes|       -|        -|          -|          -|    -|
+    +-------------------------------------------------+------+------+---------+-----------+----------+---------+---------+----------+--------+---------+-----------+-----------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* AP_MEMORY
++----------------------+-----------+----------+
+| Port                 | Direction | Bitwidth |
++----------------------+-----------+----------+
+| imag_op_address0     | out       | 10       |
+| imag_op_address1     | out       | 10       |
+| imag_op_d0           | out       | 32       |
+| imag_op_q1           | in        | 32       |
+| imag_sample_address0 | out       | 10       |
+| imag_sample_q0       | in        | 32       |
+| real_op_address0     | out       | 10       |
+| real_op_address1     | out       | 10       |
+| real_op_d0           | out       | 32       |
+| real_op_q1           | in        | 32       |
+| real_sample_address0 | out       | 10       |
+| real_sample_q0       | in        | 32       |
++----------------------+-----------+----------+
+
+* TOP LEVEL CONTROL
++-----------+------------+-----------------------------------+
+| Interface | Type       | Ports                             |
++-----------+------------+-----------------------------------+
+| ap_clk    | clock      | ap_clk                            |
+| ap_rst    | reset      | ap_rst                            |
+| ap_ctrl   | ap_ctrl_hs | ap_done ap_idle ap_ready ap_start |
++-----------+------------+-----------------------------------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++-------------+-----------+----------+
+| Argument    | Direction | Datatype |
++-------------+-----------+----------+
+| real_sample | in        | float*   |
+| imag_sample | in        | float*   |
+| real_op     | inout     | float*   |
+| imag_op     | inout     | float*   |
++-------------+-----------+----------+
+
+* SW-to-HW Mapping
++-------------+----------------------+---------+----------+
+| Argument    | HW Interface         | HW Type | HW Usage |
++-------------+----------------------+---------+----------+
+| real_sample | real_sample_address0 | port    | offset   |
+| real_sample | real_sample_ce0      | port    |          |
+| real_sample | real_sample_q0       | port    |          |
+| imag_sample | imag_sample_address0 | port    | offset   |
+| imag_sample | imag_sample_ce0      | port    |          |
+| imag_sample | imag_sample_q0       | port    |          |
+| real_op     | real_op_address0     | port    | offset   |
+| real_op     | real_op_ce0          | port    |          |
+| real_op     | real_op_we0          | port    |          |
+| real_op     | real_op_d0           | port    |          |
+| real_op     | real_op_address1     | port    | offset   |
+| real_op     | real_op_ce1          | port    |          |
+| real_op     | real_op_q1           | port    |          |
+| imag_op     | imag_op_address0     | port    | offset   |
+| imag_op     | imag_op_ce0          | port    |          |
+| imag_op     | imag_op_we0          | port    |          |
+| imag_op     | imag_op_d0           | port    |          |
+| imag_op     | imag_op_address1     | port    | offset   |
+| imag_op     | imag_op_ce1          | port    |          |
+| imag_op     | imag_op_q1           | port    |          |
++-------------+----------------------+---------+----------+
+
+
+================================================================
+== Bind Op Report
+================================================================
++-------------------------------------------------+-----+--------+---------------+--------+----------+---------+
+| Name                                            | DSP | Pragma | Variable      | Op     | Impl     | Latency |
++-------------------------------------------------+-----+--------+---------------+--------+----------+---------+
+| + dft                                           | 20  |        |               |        |          |         |
+|  + dft_Pipeline_VITIS_LOOP_17_1                 | 0   |        |               |        |          |         |
+|    icmp_ln17_fu_74_p2                           |     |        | icmp_ln17     | seteq  | auto     | 0       |
+|    add_ln17_fu_80_p2                            |     |        | add_ln17      | add    | fabric   | 0       |
+|  + dft_Pipeline_VITIS_LOOP_23_2_VITIS_LOOP_28_3 | 20  |        |               |        |          |         |
+|    icmp_ln23_fu_196_p2                          |     |        | icmp_ln23     | seteq  | auto     | 0       |
+|    add_ln23_fu_202_p2                           |     |        | add_ln23      | add    | fabric   | 0       |
+|    icmp_ln28_fu_219_p2                          |     |        | icmp_ln28     | seteq  | auto     | 0       |
+|    select_ln23_fu_225_p3                        |     |        | select_ln23   | select | auto_sel | 0       |
+|    add_ln23_1_fu_233_p2                         |     |        | add_ln23_1    | add    | fabric   | 0       |
+|    select_ln23_1_fu_239_p3                      |     |        | select_ln23_1 | select | auto_sel | 0       |
+|    mul_10s_10s_10_1_1_U11                       |     |        | idx           | mul    | auto     | 0       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U7             | 3   |        | mul           | fmul   | maxdsp   | 3       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U8             | 3   |        | mul1          | fmul   | maxdsp   | 3       |
+|    fsub_32ns_32ns_32_5_full_dsp_1_U3            | 2   |        | sub           | fsub   | fulldsp  | 4       |
+|    fadd_32ns_32ns_32_5_full_dsp_1_U5            | 2   |        | add           | fadd   | fulldsp  | 4       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U9             | 3   |        | mul2          | fmul   | maxdsp   | 3       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U10            | 3   |        | mul3          | fmul   | maxdsp   | 3       |
+|    fadd_32ns_32ns_32_5_full_dsp_1_U4            | 2   |        | add1          | fadd   | fulldsp  | 4       |
+|    fadd_32ns_32ns_32_5_full_dsp_1_U6            | 2   |        | add2          | fadd   | fulldsp  | 4       |
+|    add_ln28_fu_261_p2                           |     |        | add_ln28      | add    | fabric   | 0       |
++-------------------------------------------------+-----+--------+---------------+--------+----------+---------+
+
+
+================================================================
+== Storage Report
+================================================================
++-------------------------------------------------+--------+------+------+------+--------+------------------------+------+---------+------------------+
+| Name                                            | Usage  | Type | BRAM | URAM | Pragma | Variable               | Impl | Latency | Bitwidth, Depth, |
+|                                                 |        |      |      |      |        |                        |      |         | Banks            |
++-------------------------------------------------+--------+------+------+------+--------+------------------------+------+---------+------------------+
+| + dft                                           |        |      | 4    | 0    |        |                        |      |         |                  |
+|  + dft_Pipeline_VITIS_LOOP_23_2_VITIS_LOOP_28_3 |        |      | 4    | 0    |        |                        |      |         |                  |
+|    cos_coefficients_table_U                     | rom_1p |      | 2    |      |        | cos_coefficients_table | auto | 1       | 32, 1024, 1      |
+|    sin_coefficients_table_U                     | rom_1p |      | 2    |      |        | sin_coefficients_table | auto | 1       | 32, 1024, 1      |
++-------------------------------------------------+--------+------+------+------+--------+------------------------+------+---------+------------------+
+
+
+================================================================
+== Pragma Report
+================================================================
+  No pragmas found
+
