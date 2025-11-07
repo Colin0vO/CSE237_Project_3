@@ -1,0 +1,405 @@
+
+
+================================================================
+== Synthesis Summary Report of 'dft'
+================================================================
++ General Information: 
+    * Date:           Fri Nov  7 13:14:26 2025
+    * Version:        2025.1 (Build 6135595 on May 21 2025)
+    * Project:        dft.comp
+    * Solution:       hls (Vivado IP Flow Target)
+    * Product family: zynq
+    * Target device:  xc7z020-clg400-1
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +-------------------------------------------------+------+------+---------+-----------+----------+---------+--------+----------+----------+-----------+-------------+-------------+-----+
+    |                     Modules                     | Issue|      |       Latency       | Iteration|         |  Trip  |          |          |           |             |             |     |
+    |                     & Loops                     | Type | Slack| (cycles)|    (ns)   |  Latency | Interval|  Count | Pipelined|   BRAM   |    DSP    |      FF     |     LUT     | URAM|
+    +-------------------------------------------------+------+------+---------+-----------+----------+---------+--------+----------+----------+-----------+-------------+-------------+-----+
+    |+ dft                                            |     -|  0.04|   132121|  1.321e+06|         -|   132122|       -|        no|  88 (31%)|  160 (72%)|  15822 (14%)|  25243 (47%)|    -|
+    | + dft_Pipeline_VITIS_LOOP_21_1                  |     -|  0.81|     1026|  1.026e+04|         -|     1025|       -|    rewind|         -|          -|     13 (~0%)|     51 (~0%)|    -|
+    |  o VITIS_LOOP_21_1                              |     -|  7.30|     1024|  1.024e+04|         1|        1|    1024|       yes|         -|          -|            -|            -|    -|
+    | + dft_Pipeline_VITIS_LOOP_27_2_VITIS_LOOP_32_3  |     -|  0.04|   131092|  1.311e+06|         -|   131073|       -|    rewind|  88 (31%)|  160 (72%)|  15803 (14%)|  24127 (45%)|    -|
+    |  o VITIS_LOOP_27_2_VITIS_LOOP_32_3              |     -|  7.30|   131090|  1.311e+06|        20|        1|  131072|       yes|         -|          -|            -|            -|    -|
+    +-------------------------------------------------+------+------+---------+-----------+----------+---------+--------+----------+----------+-----------+-------------+-------------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* AP_MEMORY
++----------------------+-----------+----------+
+| Port                 | Direction | Bitwidth |
++----------------------+-----------+----------+
+| imag_op_0_address0   | out       | 7        |
+| imag_op_0_address1   | out       | 7        |
+| imag_op_0_d0         | out       | 32       |
+| imag_op_0_q1         | in        | 32       |
+| imag_op_1_address0   | out       | 7        |
+| imag_op_1_address1   | out       | 7        |
+| imag_op_1_d0         | out       | 32       |
+| imag_op_1_q1         | in        | 32       |
+| imag_op_2_address0   | out       | 7        |
+| imag_op_2_address1   | out       | 7        |
+| imag_op_2_d0         | out       | 32       |
+| imag_op_2_q1         | in        | 32       |
+| imag_op_3_address0   | out       | 7        |
+| imag_op_3_address1   | out       | 7        |
+| imag_op_3_d0         | out       | 32       |
+| imag_op_3_q1         | in        | 32       |
+| imag_op_4_address0   | out       | 7        |
+| imag_op_4_address1   | out       | 7        |
+| imag_op_4_d0         | out       | 32       |
+| imag_op_4_q1         | in        | 32       |
+| imag_op_5_address0   | out       | 7        |
+| imag_op_5_address1   | out       | 7        |
+| imag_op_5_d0         | out       | 32       |
+| imag_op_5_q1         | in        | 32       |
+| imag_op_6_address0   | out       | 7        |
+| imag_op_6_address1   | out       | 7        |
+| imag_op_6_d0         | out       | 32       |
+| imag_op_6_q1         | in        | 32       |
+| imag_op_7_address0   | out       | 7        |
+| imag_op_7_address1   | out       | 7        |
+| imag_op_7_d0         | out       | 32       |
+| imag_op_7_q1         | in        | 32       |
+| imag_sample_address0 | out       | 10       |
+| imag_sample_q0       | in        | 32       |
+| real_op_0_address0   | out       | 7        |
+| real_op_0_address1   | out       | 7        |
+| real_op_0_d0         | out       | 32       |
+| real_op_0_q1         | in        | 32       |
+| real_op_1_address0   | out       | 7        |
+| real_op_1_address1   | out       | 7        |
+| real_op_1_d0         | out       | 32       |
+| real_op_1_q1         | in        | 32       |
+| real_op_2_address0   | out       | 7        |
+| real_op_2_address1   | out       | 7        |
+| real_op_2_d0         | out       | 32       |
+| real_op_2_q1         | in        | 32       |
+| real_op_3_address0   | out       | 7        |
+| real_op_3_address1   | out       | 7        |
+| real_op_3_d0         | out       | 32       |
+| real_op_3_q1         | in        | 32       |
+| real_op_4_address0   | out       | 7        |
+| real_op_4_address1   | out       | 7        |
+| real_op_4_d0         | out       | 32       |
+| real_op_4_q1         | in        | 32       |
+| real_op_5_address0   | out       | 7        |
+| real_op_5_address1   | out       | 7        |
+| real_op_5_d0         | out       | 32       |
+| real_op_5_q1         | in        | 32       |
+| real_op_6_address0   | out       | 7        |
+| real_op_6_address1   | out       | 7        |
+| real_op_6_d0         | out       | 32       |
+| real_op_6_q1         | in        | 32       |
+| real_op_7_address0   | out       | 7        |
+| real_op_7_address1   | out       | 7        |
+| real_op_7_d0         | out       | 32       |
+| real_op_7_q1         | in        | 32       |
+| real_sample_address0 | out       | 10       |
+| real_sample_q0       | in        | 32       |
++----------------------+-----------+----------+
+
+* TOP LEVEL CONTROL
++-----------+------------+-----------------------------------+
+| Interface | Type       | Ports                             |
++-----------+------------+-----------------------------------+
+| ap_clk    | clock      | ap_clk                            |
+| ap_rst    | reset      | ap_rst                            |
+| ap_ctrl   | ap_ctrl_hs | ap_done ap_idle ap_ready ap_start |
++-----------+------------+-----------------------------------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++-------------+-----------+----------+
+| Argument    | Direction | Datatype |
++-------------+-----------+----------+
+| real_sample | in        | float*   |
+| imag_sample | in        | float*   |
+| real_op     | inout     | float*   |
+| imag_op     | inout     | float*   |
++-------------+-----------+----------+
+
+* SW-to-HW Mapping
++-------------+----------------------+---------+----------+
+| Argument    | HW Interface         | HW Type | HW Usage |
++-------------+----------------------+---------+----------+
+| real_sample | real_sample_address0 | port    | offset   |
+| real_sample | real_sample_ce0      | port    |          |
+| real_sample | real_sample_q0       | port    |          |
+| imag_sample | imag_sample_address0 | port    | offset   |
+| imag_sample | imag_sample_ce0      | port    |          |
+| imag_sample | imag_sample_q0       | port    |          |
+| real_op     | real_op_0_address0   | port    | offset   |
+| real_op     | real_op_0_ce0        | port    |          |
+| real_op     | real_op_0_we0        | port    |          |
+| real_op     | real_op_0_d0         | port    |          |
+| real_op     | real_op_0_address1   | port    | offset   |
+| real_op     | real_op_0_ce1        | port    |          |
+| real_op     | real_op_0_q1         | port    |          |
+| real_op     | real_op_1_address0   | port    | offset   |
+| real_op     | real_op_1_ce0        | port    |          |
+| real_op     | real_op_1_we0        | port    |          |
+| real_op     | real_op_1_d0         | port    |          |
+| real_op     | real_op_1_address1   | port    | offset   |
+| real_op     | real_op_1_ce1        | port    |          |
+| real_op     | real_op_1_q1         | port    |          |
+| real_op     | real_op_2_address0   | port    | offset   |
+| real_op     | real_op_2_ce0        | port    |          |
+| real_op     | real_op_2_we0        | port    |          |
+| real_op     | real_op_2_d0         | port    |          |
+| real_op     | real_op_2_address1   | port    | offset   |
+| real_op     | real_op_2_ce1        | port    |          |
+| real_op     | real_op_2_q1         | port    |          |
+| real_op     | real_op_3_address0   | port    | offset   |
+| real_op     | real_op_3_ce0        | port    |          |
+| real_op     | real_op_3_we0        | port    |          |
+| real_op     | real_op_3_d0         | port    |          |
+| real_op     | real_op_3_address1   | port    | offset   |
+| real_op     | real_op_3_ce1        | port    |          |
+| real_op     | real_op_3_q1         | port    |          |
+| real_op     | real_op_4_address0   | port    | offset   |
+| real_op     | real_op_4_ce0        | port    |          |
+| real_op     | real_op_4_we0        | port    |          |
+| real_op     | real_op_4_d0         | port    |          |
+| real_op     | real_op_4_address1   | port    | offset   |
+| real_op     | real_op_4_ce1        | port    |          |
+| real_op     | real_op_4_q1         | port    |          |
+| real_op     | real_op_5_address0   | port    | offset   |
+| real_op     | real_op_5_ce0        | port    |          |
+| real_op     | real_op_5_we0        | port    |          |
+| real_op     | real_op_5_d0         | port    |          |
+| real_op     | real_op_5_address1   | port    | offset   |
+| real_op     | real_op_5_ce1        | port    |          |
+| real_op     | real_op_5_q1         | port    |          |
+| real_op     | real_op_6_address0   | port    | offset   |
+| real_op     | real_op_6_ce0        | port    |          |
+| real_op     | real_op_6_we0        | port    |          |
+| real_op     | real_op_6_d0         | port    |          |
+| real_op     | real_op_6_address1   | port    | offset   |
+| real_op     | real_op_6_ce1        | port    |          |
+| real_op     | real_op_6_q1         | port    |          |
+| real_op     | real_op_7_address0   | port    | offset   |
+| real_op     | real_op_7_ce0        | port    |          |
+| real_op     | real_op_7_we0        | port    |          |
+| real_op     | real_op_7_d0         | port    |          |
+| real_op     | real_op_7_address1   | port    | offset   |
+| real_op     | real_op_7_ce1        | port    |          |
+| real_op     | real_op_7_q1         | port    |          |
+| imag_op     | imag_op_0_address0   | port    | offset   |
+| imag_op     | imag_op_0_ce0        | port    |          |
+| imag_op     | imag_op_0_we0        | port    |          |
+| imag_op     | imag_op_0_d0         | port    |          |
+| imag_op     | imag_op_0_address1   | port    | offset   |
+| imag_op     | imag_op_0_ce1        | port    |          |
+| imag_op     | imag_op_0_q1         | port    |          |
+| imag_op     | imag_op_1_address0   | port    | offset   |
+| imag_op     | imag_op_1_ce0        | port    |          |
+| imag_op     | imag_op_1_we0        | port    |          |
+| imag_op     | imag_op_1_d0         | port    |          |
+| imag_op     | imag_op_1_address1   | port    | offset   |
+| imag_op     | imag_op_1_ce1        | port    |          |
+| imag_op     | imag_op_1_q1         | port    |          |
+| imag_op     | imag_op_2_address0   | port    | offset   |
+| imag_op     | imag_op_2_ce0        | port    |          |
+| imag_op     | imag_op_2_we0        | port    |          |
+| imag_op     | imag_op_2_d0         | port    |          |
+| imag_op     | imag_op_2_address1   | port    | offset   |
+| imag_op     | imag_op_2_ce1        | port    |          |
+| imag_op     | imag_op_2_q1         | port    |          |
+| imag_op     | imag_op_3_address0   | port    | offset   |
+| imag_op     | imag_op_3_ce0        | port    |          |
+| imag_op     | imag_op_3_we0        | port    |          |
+| imag_op     | imag_op_3_d0         | port    |          |
+| imag_op     | imag_op_3_address1   | port    | offset   |
+| imag_op     | imag_op_3_ce1        | port    |          |
+| imag_op     | imag_op_3_q1         | port    |          |
+| imag_op     | imag_op_4_address0   | port    | offset   |
+| imag_op     | imag_op_4_ce0        | port    |          |
+| imag_op     | imag_op_4_we0        | port    |          |
+| imag_op     | imag_op_4_d0         | port    |          |
+| imag_op     | imag_op_4_address1   | port    | offset   |
+| imag_op     | imag_op_4_ce1        | port    |          |
+| imag_op     | imag_op_4_q1         | port    |          |
+| imag_op     | imag_op_5_address0   | port    | offset   |
+| imag_op     | imag_op_5_ce0        | port    |          |
+| imag_op     | imag_op_5_we0        | port    |          |
+| imag_op     | imag_op_5_d0         | port    |          |
+| imag_op     | imag_op_5_address1   | port    | offset   |
+| imag_op     | imag_op_5_ce1        | port    |          |
+| imag_op     | imag_op_5_q1         | port    |          |
+| imag_op     | imag_op_6_address0   | port    | offset   |
+| imag_op     | imag_op_6_ce0        | port    |          |
+| imag_op     | imag_op_6_we0        | port    |          |
+| imag_op     | imag_op_6_d0         | port    |          |
+| imag_op     | imag_op_6_address1   | port    | offset   |
+| imag_op     | imag_op_6_ce1        | port    |          |
+| imag_op     | imag_op_6_q1         | port    |          |
+| imag_op     | imag_op_7_address0   | port    | offset   |
+| imag_op     | imag_op_7_ce0        | port    |          |
+| imag_op     | imag_op_7_we0        | port    |          |
+| imag_op     | imag_op_7_d0         | port    |          |
+| imag_op     | imag_op_7_address1   | port    | offset   |
+| imag_op     | imag_op_7_ce1        | port    |          |
+| imag_op     | imag_op_7_q1         | port    |          |
++-------------+----------------------+---------+----------+
+
+
+================================================================
+== Bind Op Report
+================================================================
++-------------------------------------------------+-----+--------+-------------+-----------+--------------------------+---------+
+| Name                                            | DSP | Pragma | Variable    | Op        | Impl                     | Latency |
++-------------------------------------------------+-----+--------+-------------+-----------+--------------------------+---------+
+| + dft                                           | 160 |        |             |           |                          |         |
+|  + dft_Pipeline_VITIS_LOOP_21_1                 | 0   |        |             |           |                          |         |
+|    icmp_ln21_fu_318_p2                          |     |        | icmp_ln21   | seteq     | auto                     | 0       |
+|    add_ln21_fu_324_p2                           |     |        | add_ln21    | add       | fabric                   | 0       |
+|  + dft_Pipeline_VITIS_LOOP_27_2_VITIS_LOOP_32_3 | 160 |        |             |           |                          |         |
+|    icmp_ln27_fu_1762_p2                         |     |        | icmp_ln27   | seteq     | auto                     | 0       |
+|    add_ln27_fu_1768_p2                          |     |        | add_ln27    | add       | fabric                   | 0       |
+|    select_ln35_fu_1792_p3                       |     |        | select_ln35 | select    | auto_sel                 | 0       |
+|    add_ln27_1_fu_1804_p2                        |     |        | add_ln27_1  | add       | fabric                   | 0       |
+|    select_ln27_fu_1810_p3                       |     |        | select_ln27 | select    | auto_sel                 | 0       |
+|    mul_10s_10s_10_1_1_U81                       |     |        | mul_ln35    | mul       | auto                     | 0       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U49            | 3   |        | mul         | fmul      | maxdsp                   | 3       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U50            | 3   |        | mul1        | fmul      | maxdsp                   | 3       |
+|    fsub_32ns_32ns_32_5_full_dsp_1_U17           | 2   |        | sub         | fsub      | fulldsp                  | 4       |
+|    fadd_32ns_32ns_32_5_full_dsp_1_U33           | 2   |        | add         | fadd      | fulldsp                  | 4       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U51            | 3   |        | mul2        | fmul      | maxdsp                   | 3       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U52            | 3   |        | mul3        | fmul      | maxdsp                   | 3       |
+|    fadd_32ns_32ns_32_5_full_dsp_1_U18           | 2   |        | add1        | fadd      | fulldsp                  | 4       |
+|    fadd_32ns_32ns_32_5_full_dsp_1_U34           | 2   |        | add2        | fadd      | fulldsp                  | 4       |
+|    add_ln35_fu_1867_p2                          |     |        | add_ln35    | add       | fabric                   | 0       |
+|    sparsemux_17_3_32_1_1_U82                    |     |        | c_1         | sparsemux | compactencoding_dontcare | 0       |
+|    sparsemux_17_3_32_1_1_U83                    |     |        | s_1         | sparsemux | compactencoding_dontcare | 0       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U53            | 3   |        | mul20_1     | fmul      | maxdsp                   | 3       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U54            | 3   |        | mul21_1     | fmul      | maxdsp                   | 3       |
+|    fsub_32ns_32ns_32_5_full_dsp_1_U19           | 2   |        | sub_1       | fsub      | fulldsp                  | 4       |
+|    fadd_32ns_32ns_32_5_full_dsp_1_U35           | 2   |        | add_1       | fadd      | fulldsp                  | 4       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U55            | 3   |        | mul24_1     | fmul      | maxdsp                   | 3       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U56            | 3   |        | mul25_1     | fmul      | maxdsp                   | 3       |
+|    fadd_32ns_32ns_32_5_full_dsp_1_U20           | 2   |        | add26_1     | fadd      | fulldsp                  | 4       |
+|    fadd_32ns_32ns_32_5_full_dsp_1_U36           | 2   |        | add29_1     | fadd      | fulldsp                  | 4       |
+|    add_ln35_1_fu_1915_p2                        |     |        | add_ln35_1  | add       | fabric                   | 0       |
+|    sparsemux_9_3_32_1_1_U84                     |     |        | c_2         | sparsemux | compactencoding_dontcare | 0       |
+|    sparsemux_9_3_32_1_1_U85                     |     |        | s_2         | sparsemux | compactencoding_dontcare | 0       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U57            | 3   |        | mul20_2     | fmul      | maxdsp                   | 3       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U58            | 3   |        | mul21_2     | fmul      | maxdsp                   | 3       |
+|    fsub_32ns_32ns_32_5_full_dsp_1_U21           | 2   |        | sub_2       | fsub      | fulldsp                  | 4       |
+|    fadd_32ns_32ns_32_5_full_dsp_1_U37           | 2   |        | add_2       | fadd      | fulldsp                  | 4       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U59            | 3   |        | mul24_2     | fmul      | maxdsp                   | 3       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U60            | 3   |        | mul25_2     | fmul      | maxdsp                   | 3       |
+|    fadd_32ns_32ns_32_5_full_dsp_1_U22           | 2   |        | add26_2     | fadd      | fulldsp                  | 4       |
+|    fadd_32ns_32ns_32_5_full_dsp_1_U38           | 2   |        | add29_2     | fadd      | fulldsp                  | 4       |
+|    add_ln35_2_fu_1945_p2                        |     |        | add_ln35_2  | add       | fabric                   | 0       |
+|    sparsemux_17_3_32_1_1_U86                    |     |        | c_3         | sparsemux | compactencoding_dontcare | 0       |
+|    sparsemux_17_3_32_1_1_U87                    |     |        | s_3         | sparsemux | compactencoding_dontcare | 0       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U61            | 3   |        | mul20_3     | fmul      | maxdsp                   | 3       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U62            | 3   |        | mul21_3     | fmul      | maxdsp                   | 3       |
+|    fsub_32ns_32ns_32_5_full_dsp_1_U23           | 2   |        | sub_3       | fsub      | fulldsp                  | 4       |
+|    fadd_32ns_32ns_32_5_full_dsp_1_U39           | 2   |        | add_3       | fadd      | fulldsp                  | 4       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U63            | 3   |        | mul24_3     | fmul      | maxdsp                   | 3       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U64            | 3   |        | mul25_3     | fmul      | maxdsp                   | 3       |
+|    fadd_32ns_32ns_32_5_full_dsp_1_U24           | 2   |        | add26_3     | fadd      | fulldsp                  | 4       |
+|    fadd_32ns_32ns_32_5_full_dsp_1_U40           | 2   |        | add29_3     | fadd      | fulldsp                  | 4       |
+|    add_ln35_3_fu_1984_p2                        |     |        | add_ln35_3  | add       | fabric                   | 0       |
+|    icmp_ln36_fu_2003_p2                         |     |        | icmp_ln36   | seteq     | auto                     | 0       |
+|    c_4_fu_2347_p3                               |     |        | c_4         | select    | auto_sel                 | 0       |
+|    s_4_fu_2354_p3                               |     |        | s_4         | select    | auto_sel                 | 0       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U65            | 3   |        | mul20_4     | fmul      | maxdsp                   | 3       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U66            | 3   |        | mul21_4     | fmul      | maxdsp                   | 3       |
+|    fsub_32ns_32ns_32_5_full_dsp_1_U25           | 2   |        | sub_4       | fsub      | fulldsp                  | 4       |
+|    fadd_32ns_32ns_32_5_full_dsp_1_U41           | 2   |        | add_4       | fadd      | fulldsp                  | 4       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U67            | 3   |        | mul24_4     | fmul      | maxdsp                   | 3       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U68            | 3   |        | mul25_4     | fmul      | maxdsp                   | 3       |
+|    fadd_32ns_32ns_32_5_full_dsp_1_U26           | 2   |        | add26_4     | fadd      | fulldsp                  | 4       |
+|    fadd_32ns_32ns_32_5_full_dsp_1_U42           | 2   |        | add29_4     | fadd      | fulldsp                  | 4       |
+|    add_ln35_4_fu_2009_p2                        |     |        | add_ln35_4  | add       | fabric                   | 0       |
+|    sparsemux_17_3_32_1_1_U88                    |     |        | c_5         | sparsemux | compactencoding_dontcare | 0       |
+|    sparsemux_17_3_32_1_1_U89                    |     |        | s_5         | sparsemux | compactencoding_dontcare | 0       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U69            | 3   |        | mul20_5     | fmul      | maxdsp                   | 3       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U70            | 3   |        | mul21_5     | fmul      | maxdsp                   | 3       |
+|    fsub_32ns_32ns_32_5_full_dsp_1_U27           | 2   |        | sub_5       | fsub      | fulldsp                  | 4       |
+|    fadd_32ns_32ns_32_5_full_dsp_1_U43           | 2   |        | add_5       | fadd      | fulldsp                  | 4       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U71            | 3   |        | mul24_5     | fmul      | maxdsp                   | 3       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U72            | 3   |        | mul25_5     | fmul      | maxdsp                   | 3       |
+|    fadd_32ns_32ns_32_5_full_dsp_1_U28           | 2   |        | add26_5     | fadd      | fulldsp                  | 4       |
+|    fadd_32ns_32ns_32_5_full_dsp_1_U44           | 2   |        | add29_5     | fadd      | fulldsp                  | 4       |
+|    add_ln35_5_fu_2256_p2                        |     |        | add_ln35_5  | add       | fabric                   | 0       |
+|    sparsemux_9_3_32_1_1_U90                     |     |        | c_6         | sparsemux | compactencoding_dontcare | 0       |
+|    sparsemux_9_3_32_1_1_U91                     |     |        | s_6         | sparsemux | compactencoding_dontcare | 0       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U73            | 3   |        | mul20_6     | fmul      | maxdsp                   | 3       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U74            | 3   |        | mul21_6     | fmul      | maxdsp                   | 3       |
+|    fsub_32ns_32ns_32_5_full_dsp_1_U29           | 2   |        | sub_6       | fsub      | fulldsp                  | 4       |
+|    fadd_32ns_32ns_32_5_full_dsp_1_U45           | 2   |        | add_6       | fadd      | fulldsp                  | 4       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U75            | 3   |        | mul24_6     | fmul      | maxdsp                   | 3       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U76            | 3   |        | mul25_6     | fmul      | maxdsp                   | 3       |
+|    fadd_32ns_32ns_32_5_full_dsp_1_U30           | 2   |        | add26_6     | fadd      | fulldsp                  | 4       |
+|    fadd_32ns_32ns_32_5_full_dsp_1_U46           | 2   |        | add29_6     | fadd      | fulldsp                  | 4       |
+|    add_ln35_6_fu_2286_p2                        |     |        | add_ln35_6  | add       | fabric                   | 0       |
+|    sparsemux_17_3_32_1_1_U92                    |     |        | c_7         | sparsemux | compactencoding_dontcare | 0       |
+|    sparsemux_17_3_32_1_1_U93                    |     |        | s_7         | sparsemux | compactencoding_dontcare | 0       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U77            | 3   |        | mul20_7     | fmul      | maxdsp                   | 3       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U78            | 3   |        | mul21_7     | fmul      | maxdsp                   | 3       |
+|    fsub_32ns_32ns_32_5_full_dsp_1_U31           | 2   |        | sub_7       | fsub      | fulldsp                  | 4       |
+|    fadd_32ns_32ns_32_5_full_dsp_1_U47           | 2   |        | add_7       | fadd      | fulldsp                  | 4       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U79            | 3   |        | mul24_7     | fmul      | maxdsp                   | 3       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U80            | 3   |        | mul25_7     | fmul      | maxdsp                   | 3       |
+|    fadd_32ns_32ns_32_5_full_dsp_1_U32           | 2   |        | add26_7     | fadd      | fulldsp                  | 4       |
+|    fadd_32ns_32ns_32_5_full_dsp_1_U48           | 2   |        | add29_7     | fadd      | fulldsp                  | 4       |
+|    add_ln32_fu_1832_p2                          |     |        | add_ln32    | add       | fabric                   | 0       |
++-------------------------------------------------+-----+--------+-------------+-----------+--------------------------+---------+
+
+
+================================================================
+== Storage Report
+================================================================
++-------------------------------------------------+--------+------+------+------+--------+--------------------------------+------+---------+------------------+
+| Name                                            | Usage  | Type | BRAM | URAM | Pragma | Variable                       | Impl | Latency | Bitwidth, Depth, |
+|                                                 |        |      |      |      |        |                                |      |         | Banks            |
++-------------------------------------------------+--------+------+------+------+--------+--------------------------------+------+---------+------------------+
+| + dft                                           |        |      | 88   | 0    |        |                                |      |         |                  |
+|  + dft_Pipeline_VITIS_LOOP_27_2_VITIS_LOOP_32_3 |        |      | 88   | 0    |        |                                |      |         |                  |
+|    p_ZL22cos_coefficients_table_0_U             | rom_np |      | 8    |      |        | p_ZL22cos_coefficients_table_0 | auto | 1       | 32, 128, 1       |
+|    p_ZL22sin_coefficients_table_0_U             | rom_np |      | 8    |      |        | p_ZL22sin_coefficients_table_0 | auto | 1       | 32, 128, 1       |
+|    p_ZL22cos_coefficients_table_1_U             | rom_np |      | 4    |      |        | p_ZL22cos_coefficients_table_1 | auto | 1       | 32, 128, 1       |
+|    p_ZL22cos_coefficients_table_2_U             | rom_np |      | 6    |      |        | p_ZL22cos_coefficients_table_2 | auto | 1       | 32, 128, 1       |
+|    p_ZL22cos_coefficients_table_3_U             | rom_np |      | 4    |      |        | p_ZL22cos_coefficients_table_3 | auto | 1       | 32, 128, 1       |
+|    p_ZL22cos_coefficients_table_4_U             | rom_np |      | 8    |      |        | p_ZL22cos_coefficients_table_4 | auto | 1       | 32, 128, 1       |
+|    p_ZL22cos_coefficients_table_5_U             | rom_np |      | 4    |      |        | p_ZL22cos_coefficients_table_5 | auto | 1       | 32, 128, 1       |
+|    p_ZL22cos_coefficients_table_6_U             | rom_np |      | 6    |      |        | p_ZL22cos_coefficients_table_6 | auto | 1       | 32, 128, 1       |
+|    p_ZL22cos_coefficients_table_7_U             | rom_np |      | 4    |      |        | p_ZL22cos_coefficients_table_7 | auto | 1       | 32, 128, 1       |
+|    p_ZL22sin_coefficients_table_1_U             | rom_np |      | 4    |      |        | p_ZL22sin_coefficients_table_1 | auto | 1       | 32, 128, 1       |
+|    p_ZL22sin_coefficients_table_2_U             | rom_np |      | 6    |      |        | p_ZL22sin_coefficients_table_2 | auto | 1       | 32, 128, 1       |
+|    p_ZL22sin_coefficients_table_3_U             | rom_np |      | 4    |      |        | p_ZL22sin_coefficients_table_3 | auto | 1       | 32, 128, 1       |
+|    p_ZL22sin_coefficients_table_4_U             | rom_np |      | 8    |      |        | p_ZL22sin_coefficients_table_4 | auto | 1       | 32, 128, 1       |
+|    p_ZL22sin_coefficients_table_5_U             | rom_np |      | 4    |      |        | p_ZL22sin_coefficients_table_5 | auto | 1       | 32, 128, 1       |
+|    p_ZL22sin_coefficients_table_6_U             | rom_np |      | 6    |      |        | p_ZL22sin_coefficients_table_6 | auto | 1       | 32, 128, 1       |
+|    p_ZL22sin_coefficients_table_7_U             | rom_np |      | 4    |      |        | p_ZL22sin_coefficients_table_7 | auto | 1       | 32, 128, 1       |
++-------------------------------------------------+--------+------+------+------+--------+--------------------------------+------+---------+------------------+
+
+
+================================================================
+== Pragma Report
+================================================================
+* Valid Pragma Syntax
++-----------------+-------------------------------------------------------+-------------------------------------------+
+| Type            | Options                                               | Location                                  |
++-----------------+-------------------------------------------------------+-------------------------------------------+
+| ARRAY_PARTITION | variable=cos_coefficients_table cyclic factor=8 dim=1 | dft.cpp:15 in dft, cos_coefficients_table |
+| ARRAY_PARTITION | variable=sin_coefficients_table cyclic factor=8 dim=1 | dft.cpp:16 in dft, sin_coefficients_table |
+| ARRAY_PARTITION | variable=real_op cyclic factor=8 dim=1                | dft.cpp:17 in dft, real_op                |
+| ARRAY_PARTITION | variable=imag_op cyclic factor=8 dim=1                | dft.cpp:18 in dft, imag_op                |
+| PIPELINE        | ii=1                                                  | dft.cpp:33 in dft                         |
+| UNROLL          | factor=8                                              | dft.cpp:34 in dft                         |
++-----------------+-------------------------------------------------------+-------------------------------------------+
+
+
