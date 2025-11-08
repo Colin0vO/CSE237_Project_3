@@ -1,0 +1,209 @@
+
+
+================================================================
+== Vitis HLS Report for 'dft'
+================================================================
+* Date:           Fri Nov  7 22:25:21 2025
+
+* Version:        2025.1.1 (Build 6214317 on Sep 11 2025)
+* Project:        dft
+* Solution:       hls (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  |  10.00 ns|  8.956 ns|     2.70 ns|
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+-----------+---------+---------+---------+
+    |  Latency (cycles) |   Latency (absolute)  |      Interval     | Pipeline|
+    |   min   |   max   |    min    |    max    |   min   |   max   |   Type  |
+    +---------+---------+-----------+-----------+---------+---------+---------+
+    |  4195351|  4195351|  41.954 ms|  41.954 ms|  4195352|  4195352|       no|
+    +---------+---------+-----------+-----------+---------+---------+---------+
+
+    + Detail: 
+        * Instance: 
+        +---------------------------------------------------------+----------------------------------------------+---------+---------+-----------+-----------+---------+---------+------------------------------------------------+
+        |                                                         |                                              |  Latency (cycles) |   Latency (absolute)  |      Interval     |                    Pipeline                    |
+        |                         Instance                        |                    Module                    |   min   |   max   |    min    |    max    |   min   |   max   |                      Type                      |
+        +---------------------------------------------------------+----------------------------------------------+---------+---------+-----------+-----------+---------+---------+------------------------------------------------+
+        |grp_dft_Pipeline_VITIS_LOOP_22_1_fu_110                  |dft_Pipeline_VITIS_LOOP_22_1                  |     1026|     1026|  10.260 us|  10.260 us|     1025|     1025|  loop auto-rewind stp (delay=0 clock cycles(s))|
+        |grp_dft_Pipeline_VITIS_LOOP_32_2_VITIS_LOOP_37_3_fu_136  |dft_Pipeline_VITIS_LOOP_32_2_VITIS_LOOP_37_3  |  4194320|  4194320|  41.943 ms|  41.943 ms|  4194308|  4194308|  loop auto-rewind stp (delay=0 clock cycles(s))|
+        +---------------------------------------------------------+----------------------------------------------+---------+---------+-----------+-----------+---------+---------+------------------------------------------------+
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+--------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF   |  LUT  | URAM|
++-----------------+---------+-----+--------+-------+-----+
+|DSP              |        -|    -|       -|      -|    -|
+|Expression       |        -|    -|       0|      6|    -|
+|FIFO             |        -|    -|       -|      -|    -|
+|Instance         |        4|    5|    1116|   1440|    -|
+|Memory           |        4|    -|       0|      0|    -|
+|Multiplexer      |        -|    -|       0|    181|    -|
+|Register         |        -|    -|      90|      -|    -|
++-----------------+---------+-----+--------+-------+-----+
+|Total            |        8|    5|    1206|   1627|    0|
++-----------------+---------+-----+--------+-------+-----+
+|Available        |      280|  220|  106400|  53200|    0|
++-----------------+---------+-----+--------+-------+-----+
+|Utilization (%)  |        2|    2|       1|      3|    0|
++-----------------+---------+-----+--------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    +---------------------------------------------------------+----------------------------------------------+---------+----+------+------+-----+
+    |                         Instance                        |                    Module                    | BRAM_18K| DSP|  FF  |  LUT | URAM|
+    +---------------------------------------------------------+----------------------------------------------+---------+----+------+------+-----+
+    |CTRL_s_axi_U                                             |CTRL_s_axi                                    |        0|   0|    36|    40|    0|
+    |grp_dft_Pipeline_VITIS_LOOP_22_1_fu_110                  |dft_Pipeline_VITIS_LOOP_22_1                  |        0|   0|    41|    84|    0|
+    |grp_dft_Pipeline_VITIS_LOOP_32_2_VITIS_LOOP_37_3_fu_136  |dft_Pipeline_VITIS_LOOP_32_2_VITIS_LOOP_37_3  |        4|   5|  1039|  1316|    0|
+    +---------------------------------------------------------+----------------------------------------------+---------+----+------+------+-----+
+    |Total                                                    |                                              |        4|   5|  1116|  1440|    0|
+    +---------------------------------------------------------+----------------------------------------------+---------+----+------+------+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    +------------+---------------------------+---------+---+----+-----+------+-----+------+-------------+
+    |   Memory   |           Module          | BRAM_18K| FF| LUT| URAM| Words| Bits| Banks| W*Bits*Banks|
+    +------------+---------------------------+---------+---+----+-----+------+-----+------+-------------+
+    |real_buf_U  |real_buf_RAM_2P_BRAM_1R1W  |        2|  0|   0|    0|  1024|   32|     1|        32768|
+    |imag_buf_U  |real_buf_RAM_2P_BRAM_1R1W  |        2|  0|   0|    0|  1024|   32|     1|        32768|
+    +------------+---------------------------+---------+---+----+-----+------+-----+------+-------------+
+    |Total       |                           |        4|  0|   0|    0|  2048|   64|     2|        65536|
+    +------------+---------------------------+---------+---+----+-----+------+-----+------+-------------+
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +------------------------------------------------------------------------+----------+----+---+----+------------+------------+
+    |                              Variable Name                             | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +------------------------------------------------------------------------+----------+----+---+----+------------+------------+
+    |grp_dft_Pipeline_VITIS_LOOP_32_2_VITIS_LOOP_37_3_fu_136_imag_op_TREADY  |       and|   0|  0|   2|           1|           1|
+    |grp_dft_Pipeline_VITIS_LOOP_32_2_VITIS_LOOP_37_3_fu_136_real_op_TREADY  |       and|   0|  0|   2|           1|           1|
+    |ap_block_state6                                                         |        or|   0|  0|   2|           1|           1|
+    +------------------------------------------------------------------------+----------+----+---+----+------------+------------+
+    |Total                                                                   |          |   0|  0|   6|           3|           3|
+    +------------------------------------------------------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +---------------------------------+----+-----------+-----+-----------+
+    |               Name              | LUT| Input Size| Bits| Total Bits|
+    +---------------------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm                        |  37|          7|    1|          7|
+    |imag_buf_ce0                     |   9|          2|    1|          2|
+    |imag_buf_ce1                     |   9|          2|    1|          2|
+    |imag_buf_we1                     |   9|          2|    1|          2|
+    |imag_op_TDATA_int_regslice       |   9|          2|   32|         64|
+    |imag_op_TKEEP_int_regslice       |   9|          2|    4|          8|
+    |imag_op_TLAST_int_regslice       |   9|          2|    1|          2|
+    |imag_op_TSTRB_int_regslice       |   9|          2|    4|          8|
+    |imag_sample_TREADY_int_regslice  |   9|          2|    1|          2|
+    |real_buf_ce0                     |   9|          2|    1|          2|
+    |real_buf_ce1                     |   9|          2|    1|          2|
+    |real_buf_we1                     |   9|          2|    1|          2|
+    |real_op_TDATA_int_regslice       |   9|          2|   32|         64|
+    |real_op_TKEEP_int_regslice       |   9|          2|    4|          8|
+    |real_op_TLAST_int_regslice       |   9|          2|    1|          2|
+    |real_op_TSTRB_int_regslice       |   9|          2|    4|          8|
+    |real_sample_TREADY_int_regslice  |   9|          2|    1|          2|
+    +---------------------------------+----+-----------+-----+-----------+
+    |Total                            | 181|         39|   91|        187|
+    +---------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +----------------------------------------------------------------------+----+----+-----+-----------+
+    |                                 Name                                 | FF | LUT| Bits| Const Bits|
+    +----------------------------------------------------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                                                             |   6|   0|    6|          0|
+    |grp_dft_Pipeline_VITIS_LOOP_22_1_fu_110_ap_start_reg                  |   1|   0|    1|          0|
+    |grp_dft_Pipeline_VITIS_LOOP_32_2_VITIS_LOOP_37_3_fu_136_ap_start_reg  |   1|   0|    1|          0|
+    |imag_op_TDATA_reg                                                     |  32|   0|   32|          0|
+    |imag_op_TKEEP_reg                                                     |   4|   0|    4|          0|
+    |imag_op_TLAST_reg                                                     |   1|   0|    1|          0|
+    |imag_op_TSTRB_reg                                                     |   4|   0|    4|          0|
+    |real_op_TDATA_reg                                                     |  32|   0|   32|          0|
+    |real_op_TKEEP_reg                                                     |   4|   0|    4|          0|
+    |real_op_TLAST_reg                                                     |   1|   0|    1|          0|
+    |real_op_TSTRB_reg                                                     |   4|   0|    4|          0|
+    +----------------------------------------------------------------------+----+----+-----+-----------+
+    |Total                                                                 |  90|   0|   90|          0|
+    +----------------------------------------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++--------------------+-----+-----+------------+----------------------+--------------+
+|      RTL Ports     | Dir | Bits|  Protocol  |     Source Object    |    C Type    |
++--------------------+-----+-----+------------+----------------------+--------------+
+|s_axi_CTRL_AWVALID  |   in|    1|       s_axi|                  CTRL|   return void|
+|s_axi_CTRL_AWREADY  |  out|    1|       s_axi|                  CTRL|   return void|
+|s_axi_CTRL_AWADDR   |   in|    4|       s_axi|                  CTRL|   return void|
+|s_axi_CTRL_WVALID   |   in|    1|       s_axi|                  CTRL|   return void|
+|s_axi_CTRL_WREADY   |  out|    1|       s_axi|                  CTRL|   return void|
+|s_axi_CTRL_WDATA    |   in|   32|       s_axi|                  CTRL|   return void|
+|s_axi_CTRL_WSTRB    |   in|    4|       s_axi|                  CTRL|   return void|
+|s_axi_CTRL_ARVALID  |   in|    1|       s_axi|                  CTRL|   return void|
+|s_axi_CTRL_ARREADY  |  out|    1|       s_axi|                  CTRL|   return void|
+|s_axi_CTRL_ARADDR   |   in|    4|       s_axi|                  CTRL|   return void|
+|s_axi_CTRL_RVALID   |  out|    1|       s_axi|                  CTRL|   return void|
+|s_axi_CTRL_RREADY   |   in|    1|       s_axi|                  CTRL|   return void|
+|s_axi_CTRL_RDATA    |  out|   32|       s_axi|                  CTRL|   return void|
+|s_axi_CTRL_RRESP    |  out|    2|       s_axi|                  CTRL|   return void|
+|s_axi_CTRL_BVALID   |  out|    1|       s_axi|                  CTRL|   return void|
+|s_axi_CTRL_BREADY   |   in|    1|       s_axi|                  CTRL|   return void|
+|s_axi_CTRL_BRESP    |  out|    2|       s_axi|                  CTRL|   return void|
+|ap_clk              |   in|    1|  ap_ctrl_hs|                   dft|  return value|
+|ap_rst_n            |   in|    1|  ap_ctrl_hs|                   dft|  return value|
+|interrupt           |  out|    1|  ap_ctrl_hs|                   dft|  return value|
+|real_sample_TDATA   |   in|   32|        axis|  real_sample_V_data_V|       pointer|
+|real_sample_TVALID  |   in|    1|        axis|  real_sample_V_last_V|       pointer|
+|real_sample_TREADY  |  out|    1|        axis|  real_sample_V_last_V|       pointer|
+|real_sample_TLAST   |   in|    1|        axis|  real_sample_V_last_V|       pointer|
+|real_sample_TKEEP   |   in|    4|        axis|  real_sample_V_keep_V|       pointer|
+|real_sample_TSTRB   |   in|    4|        axis|  real_sample_V_strb_V|       pointer|
+|imag_sample_TDATA   |   in|   32|        axis|  imag_sample_V_data_V|       pointer|
+|imag_sample_TVALID  |   in|    1|        axis|  imag_sample_V_last_V|       pointer|
+|imag_sample_TREADY  |  out|    1|        axis|  imag_sample_V_last_V|       pointer|
+|imag_sample_TLAST   |   in|    1|        axis|  imag_sample_V_last_V|       pointer|
+|imag_sample_TKEEP   |   in|    4|        axis|  imag_sample_V_keep_V|       pointer|
+|imag_sample_TSTRB   |   in|    4|        axis|  imag_sample_V_strb_V|       pointer|
+|real_op_TDATA       |  out|   32|        axis|      real_op_V_data_V|       pointer|
+|real_op_TVALID      |  out|    1|        axis|      real_op_V_last_V|       pointer|
+|real_op_TREADY      |   in|    1|        axis|      real_op_V_last_V|       pointer|
+|real_op_TLAST       |  out|    1|        axis|      real_op_V_last_V|       pointer|
+|real_op_TKEEP       |  out|    4|        axis|      real_op_V_keep_V|       pointer|
+|real_op_TSTRB       |  out|    4|        axis|      real_op_V_strb_V|       pointer|
+|imag_op_TDATA       |  out|   32|        axis|      imag_op_V_data_V|       pointer|
+|imag_op_TVALID      |  out|    1|        axis|      imag_op_V_last_V|       pointer|
+|imag_op_TREADY      |   in|    1|        axis|      imag_op_V_last_V|       pointer|
+|imag_op_TLAST       |  out|    1|        axis|      imag_op_V_last_V|       pointer|
+|imag_op_TKEEP       |  out|    4|        axis|      imag_op_V_keep_V|       pointer|
+|imag_op_TSTRB       |  out|    4|        axis|      imag_op_V_strb_V|       pointer|
++--------------------+-----+-----+------------+----------------------+--------------+
+
