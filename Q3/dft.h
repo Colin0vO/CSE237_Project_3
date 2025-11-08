@@ -1,10 +1,12 @@
 #ifndef DFT_H
 #define DFT_H
 
-#define SIZE 32
 typedef float DTYPE;
+#define SIZE 32          
 
-void dft(DTYPE in_R[SIZE], DTYPE in_I[SIZE],
-         DTYPE out_R[SIZE], DTYPE out_I[SIZE]);
+
+#define PART_FACTOR 32
+
+void dft(DTYPE XX_R[SIZE], DTYPE XX_I[SIZE]);
 
 #endif
